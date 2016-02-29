@@ -15,7 +15,13 @@ function addSymlink(path) {
     if(! fs.existsSync(pathUtil.resolve(path, './node_modules'))) {
       fs.mkdirSync(pathUtil.resolve(path, './node_modules'));
     }
+    try {
     fs.symlinkSync( pathUtil.resolve(__dirname, package), target, 'dir');
+  } catch (e) {
+    if(e.code !== 'EEXIST') {
+      throw e;
+    }
+  }
   });
 }
 
