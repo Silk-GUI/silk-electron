@@ -1,0 +1,11 @@
+{
+  "name": "silk-electron",
+  "version": "0.0.1",
+  "description": "Makes it possible for electron apps to run in Silk GUI",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
