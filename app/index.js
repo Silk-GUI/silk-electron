@@ -5,10 +5,19 @@ var EventEmitter = require("events").EventEmitter,
 
 function App() {
   var self = this;
+  var appRoot = require.main.fileName || process.env.APP_ROOT;
+
+  console.log(appRoot);
+  (function () {
+    var mochaStr = '/mocha/bin';
+    var index = appRoot.indexOf(mochaStr, appRoot.length - mochaStr.length) !== -1;
+    if(index === false) {
+      appRoot = process.env.APP_ROOT;
+    }
+  })()
 
   // get app name
-  console.log(require.main.fileName);
-  var _path = path.resolve(require.main.filename, '../package.json');
+  var _path = path.resolve(appRoot, './package.json');
   console.log(_path);
   self.packageJson = require(_path);
   self.name = self.packageJson.name;
@@ -68,6 +77,8 @@ You can request the following paths by the name:
   } else if (type === 'userData') {
     if(platform === 'darwin') {
       return self.getPath('appData') + self.name;
+    } else {
+      throw new Error('getPath("userData") is not supported for your os');
     }
   }
   throw new Error('type not implemented');
