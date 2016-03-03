@@ -1,4 +1,4 @@
-console.log('global-shortcut');
+// Silk is missing the necessary api's to implement this.
 
 function GlobalShortcut () {
 

@@ -26,8 +26,10 @@ App.prototype.constructor = App;
 //TODO: add location in Silk for apps to store their
 // settings
 App.prototype.getPath = function(type) {
-  /* Docs for electron
-  ### `app.getPath(name)`
+
+/* Docs from electron
+
+### `app.getPath(name)`
 
 * `name` String
 
@@ -58,6 +60,7 @@ You can request the following paths by the name:
   var platform = process.platform;
   if (type === 'appData') {
       if(platform === 'darwin') {
+        //TODO: this should be a folder in ~/.silk-gui
         return home + '/Library/Application Support';
       } else {
         throw new Error('getPath("appData") is not supported for your os');
@@ -69,8 +72,5 @@ You can request the following paths by the name:
   }
   throw new Error('type not implemented');
 }
-
-
-console.log('silk-electron/app');
 
 module.exports = new App();

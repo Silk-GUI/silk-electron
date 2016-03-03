@@ -8,6 +8,7 @@ var fs = require('fs'),
     './global-shortcut'
   ];
 
+// symlinks the packages into the node_modules of an electron app
 function addSymlink(path) {
 
   packages.forEach(function(package) {
@@ -25,6 +26,7 @@ function addSymlink(path) {
   });
 }
 
+// removes the symlinks that were added in addSymlink
 function removeSymlink(path) {
   packages.forEach(function(package) {
     var target = pathUtil.resolve(path,'./node_modules', package);
