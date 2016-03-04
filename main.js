@@ -30,7 +30,6 @@ function addSymlink(path) {
 function removeSymlink(path) {
   packages.forEach(function(package) {
     var target = pathUtil.resolve(path,'./node_modules', package);
-    console.log(target);
     fs.unlinkSync(target);
   });
 }
