@@ -9,8 +9,9 @@ function BrowserWindow(){
 BrowserWindow.prototype = {
   setMenu: function () {},
   loadUrl: function () {
+    process.send({cmd:"ready"});
   },
   on: function () {}
-}
+};
 
 module.exports = BrowserWindow;
