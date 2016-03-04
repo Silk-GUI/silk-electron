@@ -3,7 +3,6 @@ var expect = require('chai').expect,
   path     = require('path');
 
 process.env.APP_ROOT = path.resolve(__dirname, './test_app');
-console.log(process.env.APP_ROOT);
 var app = rewire('../app/');
 
 var events = [];
@@ -31,6 +30,7 @@ describe("app", function() {
     });
     it("should return userData path", function() {
       expect(app.getPath("userData")).to.have.length.above(5);
+      expect(app.getPath("userData")).to.have.string('/test app');
     });
     it("should throw when path not supported", function() {
       expect(app.getPath.bind(this, "abc")).to.throw('type not implemented');

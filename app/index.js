@@ -5,22 +5,23 @@ var EventEmitter = require("events").EventEmitter,
 
 function App() {
   var self = this;
-  var appRoot = require.main.fileName || process.env.APP_ROOT;
+  var appRoot = require.main.filename || process.env.APP_ROOT;
 
-  console.log(appRoot);
   (function () {
-    var mochaStr = '/mocha/bin';
-    var index = appRoot.indexOf(mochaStr, appRoot.length - mochaStr.length) !== -1;
-    if(index === false) {
-      appRoot = process.env.APP_ROOT;
+    var mochaStr = '/mocha/bin/_mocha';
+    var found = appRoot.indexOf(mochaStr, appRoot.length - mochaStr.length) !== -1;
+    if(found) {
+      // we add the extra folder since the path.resolve later goes down a folder
+      appRoot = process.env.APP_ROOT + '/a';
     }
-  })()
+  })();
 
   // get app name
-  var _path = path.resolve(appRoot, './package.json');
-  console.log(_path);
+  var _path = path.resolve(appRoot, '../package.json');
   self.packageJson = require(_path);
   self.name = self.packageJson.name;
+
+  process.title = self.name;
 
   process.nextTick(function() {
     self.emit('ready');
@@ -76,12 +77,12 @@ You can request the following paths by the name:
       }
   } else if (type === 'userData') {
     if(platform === 'darwin') {
-      return self.getPath('appData') + self.name;
+      return self.getPath('appData') + '/' + self.name;
     } else {
       throw new Error('getPath("userData") is not supported for your os');
     }
   }
   throw new Error('type not implemented');
-}
+};
 
 module.exports = new App();
