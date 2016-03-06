@@ -5,7 +5,8 @@ var fs = require('fs'),
   var packages = [
     './app',
     './browser-window',
-    './global-shortcut'
+    './global-shortcut',
+    './electron'
   ];
 
 // symlinks the packages into the node_modules of an electron app
