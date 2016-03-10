@@ -68,17 +68,22 @@ You can request the following paths by the name:
   var self = this;
   var home = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
   var platform = process.platform;
+  console.log(platform);
   if (type === 'appData') {
       if(platform === 'darwin') {
+          console.log('is darwin');
         //TODO: this should be a folder in ~/.silk-gui
         return home + '/Library/Application Support';
       } else {
+          console.log('not darwin');
         throw new Error('getPath("appData") is not supported for your os');
       }
   } else if (type === 'userData') {
     if(platform === 'darwin') {
+        console.log('is darwin');
       return self.getPath('appData') + '/' + self.name;
     } else {
+        console.log('not darwin');
       throw new Error('getPath("userData") is not supported for your os');
     }
   }
