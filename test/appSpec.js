@@ -25,6 +25,9 @@ describe("app", function() {
     });
   });
   describe("getPath", function() {
+    it("should return home path", function () {
+      expect(app.getPath('home')).to.have.length.above(7)
+    });
     it("should return appData path", function() {
       expect(app.getPath('appData')).to.have.length.above(5);
     });
