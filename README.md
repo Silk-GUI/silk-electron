@@ -1,4 +1,5 @@
 # silk-electron
+[![Build Status](https://travis-ci.org/Silk-GUI/silk-electron.svg?branch=master)](https://travis-ci.org/Silk-GUI/silk-electron)
 
 This is a bridge between Silk and Electron to allow apps built with
 electron run in Silk and apps made for Silk to run in Electron.
