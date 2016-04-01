@@ -33,7 +33,7 @@ describe("app", function() {
     });
     it("should return userData path", function() {
       expect(app.getPath("userData")).to.have.length.above(5);
-      expect(app.getPath("userData")).to.have.string('/test app');
+      expect(app.getPath("userData")).to.have.string('test app');
     });
     it("should throw when path not supported", function() {
       expect(app.getPath.bind(this, "abc")).to.throw('type not implemented');

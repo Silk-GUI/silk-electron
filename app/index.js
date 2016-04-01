@@ -8,7 +8,7 @@ function App() {
   var appRoot = require.main.filename || process.env.APP_ROOT;
 
   (function() {
-    var mochaStr = '/mocha/bin/_mocha';
+    var mochaStr = path.sep + 'mocha' + path.sep + 'bin' + path.sep + '_mocha';
     var found = appRoot.indexOf(mochaStr, appRoot.length - mochaStr.length) !== -1;
     if (found) {
       // we add the extra folder since the path.resolve later goes down a folder
@@ -80,13 +80,17 @@ App.prototype.getPath = function(type) {
       } else {
         return path.join(home, '.config');
       }
-    } else {
+    } else if (platform === 'win32') {
+      return process.env.APPDATA;
+    }else {
       throw new Error('getPath("appData") is not supported for your os');
     }
   } else if (type === 'userData') {
     if (platform === 'darwin') {
       return self.getPath('appData') + '/' + self.name;
     } else if (platform === 'linux') {
+      return path.join(self.getPath('appData'), self.name);
+    } else if (platform === 'win32') {
       return path.join(self.getPath('appData'), self.name);
     } else {
       throw new Error('getPath("userData") is not supported for your os');
