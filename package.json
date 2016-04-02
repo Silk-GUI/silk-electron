@@ -1,6 +1,6 @@
 {
   "name": "silk-electron",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Makes it possible for electron apps to run in Silk GUI",
   "main": "main.js",
   "scripts": {
