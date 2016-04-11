@@ -88,13 +88,17 @@ App.prototype.getPath = function (type) {
       } else {
         return path.join(home, '.config');
       }
-    } else {
+    } else if (platform === 'win32') {
+      return process.env.APPDATA;
+    }else {
       throw new Error('getPath("appData") is not supported for your os');
     }
   } else if (type === 'userData') {
     if (platform === 'darwin') {
       return self.getPath('appData') + '/' + self.name;
     } else if (platform === 'linux') {
+      return path.join(self.getPath('appData'), self.name);
+    } else if (platform === 'win32') {
       return path.join(self.getPath('appData'), self.name);
     } else {
       throw new Error('getPath("userData") is not supported for your os');
