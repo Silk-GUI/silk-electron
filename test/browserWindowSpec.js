@@ -6,6 +6,7 @@ var BrowserWindow = rewire('../browser-window');
 describe("BrowserWindow", function () {
   var window;
   beforeEach(function () {
+    process.send = function () {};
     window = new BrowserWindow();
   });
   describe("methods", function () {
