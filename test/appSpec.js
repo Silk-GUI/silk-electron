@@ -24,6 +24,11 @@ describe("app", function() {
       app.on('ready', done);
     });
   });
+  describe("getAppPath", function () {
+    it("should return app path", function () {
+      expect(app.getAppPath()).to.equal(process.env.APP_ROOT);
+    });
+  });
   describe("getPath", function() {
     it("should return home path", function () {
       expect(app.getPath('home')).to.have.length.above(7)
